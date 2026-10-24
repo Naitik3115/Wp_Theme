@@ -1,0 +1,106 @@
+/* ==========================================================================
+   Atelier B2B – Elementor home sections glue (Phase 3: Hero + Trust marquee)
+   Loaded only when an Elementor section is active or while editing one.
+   Defaults reproduce the original static design exactly.
+   ========================================================================== */
+
+/* Wrapper reset: Elementor containers add padding / gaps by default */
+.atelier-home-section,
+.atelier-home-section .elementor,
+.atelier-section-preview .elementor{width:100%}
+.atelier-home-section .e-con,
+.atelier-section-preview .e-con,
+.atelier-home-section .e-con-inner,
+.atelier-section-preview .e-con-inner{--gap:0px;--row-gap:0px;--column-gap:0px;--padding-top:0px;--padding-right:0px;--padding-bottom:0px;--padding-left:0px;--padding-block-start:0px;--padding-block-end:0px;--padding-inline-start:0px;--padding-inline-end:0px;--widgets-spacing:0px;--widgets-spacing-row:0px;--widgets-spacing-column:0px;max-width:none}
+.atelier-home-section .elementor-widget:not(:last-child),
+.atelier-section-preview .elementor-widget:not(:last-child){margin-block-end:0}
+.atelier-home-section .elementor-widget-atelier-hero,
+.atelier-home-section .elementor-widget-atelier-trust-marquee,
+.atelier-section-preview .elementor-widget-atelier-hero,
+.atelier-section-preview .elementor-widget-atelier-trust-marquee{width:100%;max-width:100%;--container-widget-width:100%}
+
+/* Hero overlay: same gradient as main.css, colours exposed as variables for Elementor */
+.elementor-widget-atelier-hero .hero__overlay{background:linear-gradient(180deg,var(--atelier-ov-top,rgba(73,56,45,.5)) 0%,rgba(73,56,45,0) 30%,rgba(73,56,45,0) 42%,var(--atelier-ov-bottom,rgba(46,34,27,.78)) 100%)}
+
+/* Entrance animation switched off */
+.hero--static .hero__media-inner,
+.hero--static .hero__title .line__inner,
+.hero--static .hero__eyebrow,
+.hero--static .hero__foot,
+.hero--static .hero__scroll{animation:none}
+.hero--static .hero__scroll-line{animation:none;transform:none}
+
+/* Marquee direction (left-to-right) */
+.marquee--reverse .marquee__group{animation-direction:reverse}
+.marquee .sep--text{font-family:var(--f-head);line-height:1}
+
+/* Vertical position (responsive classes written by Elementor prefix_class) */
+.atelier-hero-valign-center .hero{align-items:center}
+.atelier-hero-valign-start .hero{align-items:flex-start}
+
+/* Text alignment: desktop (all widths) -> tablet -> mobile, mirroring Elementor's cascade */
+.atelier-hero-align-left .hero__content{text-align:left}
+.atelier-hero-align-left .hero__eyebrow{justify-content:flex-start}
+.atelier-hero-align-left .hero__foot{flex-direction:column;align-items:stretch;justify-content:flex-start}
+.atelier-hero-align-left .hero__ctas{justify-content:flex-start}
+.atelier-hero-align-left .hero__sub{margin-inline:0}
+@media (min-width:768px){.atelier-hero-align-left .hero__foot{flex-direction:row;align-items:flex-end;justify-content:space-between}}
+.atelier-hero-align-center .hero__content{text-align:center}
+.atelier-hero-align-center .hero__eyebrow{justify-content:center}
+.atelier-hero-align-center .hero__foot{flex-direction:column;align-items:center;justify-content:center}
+.atelier-hero-align-center .hero__ctas{justify-content:center}
+.atelier-hero-align-center .hero__sub{margin-inline:auto}
+.atelier-hero-align-right .hero__content{text-align:right}
+.atelier-hero-align-right .hero__eyebrow{justify-content:flex-end}
+.atelier-hero-align-right .hero__foot{flex-direction:column;align-items:flex-end;justify-content:flex-end}
+.atelier-hero-align-right .hero__ctas{justify-content:flex-end}
+.atelier-hero-align-right .hero__sub{margin-left:auto;margin-right:0}
+@media (max-width:1024px){
+.atelier-hero-tablet-align-left .hero__content{text-align:left}
+.atelier-hero-tablet-align-left .hero__eyebrow{justify-content:flex-start}
+.atelier-hero-tablet-align-left .hero__foot{flex-direction:column;align-items:stretch;justify-content:flex-start}
+.atelier-hero-tablet-align-left .hero__ctas{justify-content:flex-start}
+.atelier-hero-tablet-align-left .hero__sub{margin-inline:0}
+@media (min-width:768px){.atelier-hero-tablet-align-left .hero__foot{flex-direction:row;align-items:flex-end;justify-content:space-between}}
+.atelier-hero-tablet-align-center .hero__content{text-align:center}
+.atelier-hero-tablet-align-center .hero__eyebrow{justify-content:center}
+.atelier-hero-tablet-align-center .hero__foot{flex-direction:column;align-items:center;justify-content:center}
+.atelier-hero-tablet-align-center .hero__ctas{justify-content:center}
+.atelier-hero-tablet-align-center .hero__sub{margin-inline:auto}
+.atelier-hero-tablet-align-right .hero__content{text-align:right}
+.atelier-hero-tablet-align-right .hero__eyebrow{justify-content:flex-end}
+.atelier-hero-tablet-align-right .hero__foot{flex-direction:column;align-items:flex-end;justify-content:flex-end}
+.atelier-hero-tablet-align-right .hero__ctas{justify-content:flex-end}
+.atelier-hero-tablet-align-right .hero__sub{margin-left:auto;margin-right:0}
+.atelier-hero-tablet-valign-center .hero{align-items:center}
+.atelier-hero-tablet-valign-start .hero{align-items:flex-start}
+.atelier-hero-tablet-valign- .hero{align-items:flex-end}
+}
+@media (max-width:767px){
+.atelier-hero-mobile-align-left .hero__content{text-align:left}
+.atelier-hero-mobile-align-left .hero__eyebrow{justify-content:flex-start}
+.atelier-hero-mobile-align-left .hero__foot{flex-direction:column;align-items:stretch;justify-content:flex-start}
+.atelier-hero-mobile-align-left .hero__ctas{justify-content:flex-start}
+.atelier-hero-mobile-align-left .hero__sub{margin-inline:0}
+@media (min-width:768px){.atelier-hero-mobile-align-left .hero__foot{flex-direction:row;align-items:flex-end;justify-content:space-between}}
+.atelier-hero-mobile-align-center .hero__content{text-align:center}
+.atelier-hero-mobile-align-center .hero__eyebrow{justify-content:center}
+.atelier-hero-mobile-align-center .hero__foot{flex-direction:column;align-items:center;justify-content:center}
+.atelier-hero-mobile-align-center .hero__ctas{justify-content:center}
+.atelier-hero-mobile-align-center .hero__sub{margin-inline:auto}
+.atelier-hero-mobile-align-right .hero__content{text-align:right}
+.atelier-hero-mobile-align-right .hero__eyebrow{justify-content:flex-end}
+.atelier-hero-mobile-align-right .hero__foot{flex-direction:column;align-items:flex-end;justify-content:flex-end}
+.atelier-hero-mobile-align-right .hero__ctas{justify-content:flex-end}
+.atelier-hero-mobile-align-right .hero__sub{margin-left:auto;margin-right:0}
+.atelier-hero-mobile-valign-center .hero{align-items:center}
+.atelier-hero-mobile-valign-start .hero{align-items:flex-start}
+.atelier-hero-mobile-valign- .hero{align-items:flex-end}
+}
+
+/* Elementor editor / section canvas ----------------------------------------- */
+.atelier-section-stage{min-height:60vh;background:var(--c-bg)}
+.atelier-section-preview--hero .atelier-section-stage{background:var(--c-dark)}
+.atelier-section-note{padding:1.4rem var(--gutter);font-family:var(--f-head);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--c-brown)}
+.atelier-section-preview--hero .atelier-section-note{color:var(--c-beige)}
+/* The real header is not shown in this canvas, so the hero needs no extra offset beyond its own padding */

@@ -1,0 +1,71 @@
+{
+  "version": "0.4",
+  "title": "Atelier Trust Marquee",
+  "type": "page",
+  "content": [
+    {
+      "id": "c3d4e60",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_gap": {
+          "unit": "px",
+          "size": 0,
+          "column": "0",
+          "row": "0",
+          "isLinked": true
+        },
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+        },
+        "css_classes": "atelier-home-section-root atelier-home-section-root--trust"
+      },
+      "elements": [
+        {
+          "id": "c3d4e61",
+          "elType": "widget",
+          "widgetType": "atelier-trust-marquee",
+          "isInner": false,
+          "settings": {
+            "label": "Your trusted apparel manufacturing partner",
+            "items": [
+              {
+                "_id": "d1e2f31",
+                "text": "Premium Quality"
+              },
+              {
+                "_id": "d1e2f32",
+                "text": "Global Sourcing"
+              },
+              {
+                "_id": "d1e2f33",
+                "text": "Precision Manufacturing"
+              },
+              {
+                "_id": "d1e2f34",
+                "text": "Responsible Production"
+              },
+              {
+                "_id": "d1e2f35",
+                "text": "Made for your brand"
+              }
+            ],
+            "separator": "star",
+            "speed": 60,
+            "direction": "left",
+            "pause_hover": ""
+          },
+          "elements": []
+        }
+      ]
+    }
+  ],
+  "page_settings": []
+}

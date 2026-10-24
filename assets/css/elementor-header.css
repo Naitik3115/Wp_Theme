@@ -1,0 +1,76 @@
+/* ==========================================================================
+   Atelier B2B – Elementor header glue (Phase 2)
+   Loaded only when the Elementor header is active or while editing it.
+   Existing .site-header / .nav / .announcement / .burger / .mobile-menu rules in
+   main.css + responsive.css are reused; this file adapts them to Elementor markup.
+   Elementor's own generated CSS loads later, so settings made in Elementor win.
+   ========================================================================== */
+:root{--atelier-bar-min:34px;--atelier-nav-min:68px}
+@media (min-width:768px){:root{--atelier-bar-min:36px;--atelier-nav-min:78px}}
+
+/* Neutralise Elementor default gaps / margins inside the header */
+.atelier-site-header .e-con,
+.atelier-site-header .e-con-inner{--gap:0px;--row-gap:0px;--column-gap:0px;--widgets-spacing:0px;--widgets-spacing-row:0px;--widgets-spacing-column:0px}
+.atelier-site-header .elementor-widget:not(:last-child){margin-block-end:0}
+.atelier-site-header .elementor-section-wrap,.atelier-site-header .elementor{width:100%}
+
+/* WordPress admin bar offset (Elementor header only) */
+.admin-bar .atelier-elementor-header{top:32px}
+@media (max-width:782px){.admin-bar .atelier-elementor-header{top:46px}}
+
+/* Announcement bar ---------------------------------------------------------- */
+.atelier-site-header .atelier-announcement{height:auto;min-height:var(--atelier-bar-min);padding:0;overflow:hidden;align-items:center;flex-wrap:nowrap}
+.atelier-site-header .atelier-announcement .elementor-widget-atelier-marquee{flex:1 1 100%;width:100%;min-width:0;max-width:100%;overflow:hidden}
+.atelier-marquee--nosep .sep{display:none}
+.atelier-marquee--nosep .marquee__item{padding-inline:1.4rem}
+
+/* Navigation bar ------------------------------------------------------------ */
+.atelier-site-header .atelier-navigation{min-height:var(--atelier-nav-min);padding-block:0;padding-inline:var(--gutter);align-items:center;flex-wrap:nowrap}
+.atelier-site-header .atelier-header-logo,
+.atelier-site-header .atelier-header-menu,
+.atelier-site-header .atelier-header-cta{--container-widget-width:auto;--container-widget-flex-grow:0;width:auto;max-width:none;flex:0 0 auto}
+.atelier-site-header .atelier-header-logo img{display:block;height:auto;max-width:100%;transition:filter .5s var(--ease)}
+.atelier-site-header .atelier-header-logo a{display:inline-flex}
+/* Logo is assumed dark: invert to white over the hero, natural colours once the bar is solid */
+.site-header.is-top .atelier-header-logo img{filter:brightness(0) invert(1)}
+.site-header.is-scrolled .atelier-header-logo img{filter:none}
+
+.atelier-site-header .atelier-header-menu{display:flex;align-items:center;margin-left:auto;color:inherit}
+.atelier-site-header .nav__link{color:inherit}
+.atelier-site-header .atelier-nav-widget{display:none}
+.atelier-site-header .burger{color:inherit}
+
+/* CTA (Elementor Button widget) */
+.atelier-site-header .atelier-header-cta{display:none}
+.atelier-site-header .atelier-header-cta .elementor-button{display:inline-flex;align-items:center;justify-content:center;gap:.8em;padding:.95em 1.5em;border:1px solid currentColor;border-radius:999px;background:transparent;color:inherit;font-family:var(--f-head);font-weight:600;font-size:.68rem;line-height:1;letter-spacing:.14em;text-transform:uppercase;box-shadow:none;transition:background-color .45s var(--ease),color .45s var(--ease),border-color .45s var(--ease)}
+.atelier-site-header .atelier-header-cta .elementor-button-text::after{content:"";display:inline-block;width:.95em;height:.95em;margin-left:.8em;vertical-align:-.1em;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.4'%3E%3Cpath d='M4 12L12 4M5.5 4H12v6.5'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.4'%3E%3Cpath d='M4 12L12 4M5.5 4H12v6.5'/%3E%3C/svg%3E") center/contain no-repeat}
+.site-header.is-scrolled .atelier-header-cta .elementor-button{background:var(--c-brown);border-color:var(--c-brown);color:var(--c-light)}
+.site-header.is-top .atelier-header-cta .elementor-button:hover,
+.site-header.is-top .atelier-header-cta .elementor-button:focus-visible{background:var(--c-light);border-color:var(--c-light);color:var(--c-dark)}
+.site-header.is-scrolled .atelier-header-cta .elementor-button:hover,
+.site-header.is-scrolled .atelier-header-cta .elementor-button:focus-visible{background:var(--c-dark);border-color:var(--c-dark);color:var(--c-light)}
+
+/* 1180px breakpoint: full nav (3-column grid, same as the static header) */
+@media (min-width:1180px){
+  .atelier-site-header .atelier-navigation{display:grid;grid-template-columns:1fr auto 1fr}
+  .atelier-site-header .atelier-header-logo{justify-self:start}
+  .atelier-site-header .atelier-header-menu{justify-self:center;margin-left:0}
+  .atelier-site-header .atelier-header-cta{display:block;justify-self:end}
+  .atelier-site-header .atelier-nav-widget{display:block}
+  .atelier-site-header .burger{display:none}
+}
+
+/* Elementor editor / header canvas ------------------------------------------ */
+body.elementor-editor-active .mobile-menu{display:none!important}
+body.elementor-editor-active .site-header,
+body.atelier-header-preview .site-header{transform:none!important;opacity:1!important;pointer-events:auto!important;animation:none}
+body.atelier-header-preview .site-header{position:relative}
+.atelier-preview-stage{min-height:100vh;background:linear-gradient(180deg,#49382D 0%,#765A46 55%,#98765C 100%);color:var(--c-light)}
+.atelier-preview-note{padding:2rem var(--gutter);font-family:var(--f-head);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;opacity:.7}
+/* In the desktop preview the iframe can be narrower than 1180px: still show the desktop layout */
+body.atelier-header-preview.elementor-device-desktop .atelier-site-header .atelier-navigation{display:grid;grid-template-columns:1fr auto 1fr}
+body.atelier-header-preview.elementor-device-desktop .atelier-site-header .atelier-header-logo{justify-self:start}
+body.atelier-header-preview.elementor-device-desktop .atelier-site-header .atelier-header-menu{justify-self:center;margin-left:0}
+body.atelier-header-preview.elementor-device-desktop .atelier-site-header .atelier-header-cta{display:block;justify-self:end}
+body.atelier-header-preview.elementor-device-desktop .atelier-site-header .atelier-nav-widget{display:block}
+body.atelier-header-preview.elementor-device-desktop .atelier-site-header .burger{display:none}
