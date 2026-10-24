@@ -1,0 +1,154 @@
+{
+  "version": "0.4",
+  "title": "Atelier Global Header",
+  "type": "page",
+  "content": [
+    {
+      "id": "a7c1e01",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "row",
+        "flex_align_items": "center",
+        "flex_justify_content": "flex-start",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+        },
+        "background_background": "classic",
+        "background_color": "#DCCBB8",
+        "css_classes": "announcement atelier-announcement"
+      },
+      "elements": [
+        {
+          "id": "a7c1e02",
+          "elType": "widget",
+          "widgetType": "atelier-marquee",
+          "isInner": false,
+          "settings": {
+            "items": [
+              {
+                "_id": "b1a2c31",
+                "text": "Premium apparel manufacturing"
+              },
+              {
+                "_id": "b1a2c32",
+                "text": "Designed for global brands"
+              },
+              {
+                "_id": "b1a2c33",
+                "text": "Quality without compromise"
+              },
+              {
+                "_id": "b1a2c34",
+                "text": "Your vision, our craft"
+              }
+            ],
+            "speed": 45,
+            "size": "sm",
+            "show_separator": "yes",
+            "pause_hover": "yes",
+            "text_color": "#49382D",
+            "sep_color": "#98765C"
+          },
+          "elements": []
+        }
+      ]
+    },
+    {
+      "id": "a7c1e10",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "row",
+        "flex_align_items": "center",
+        "flex_justify_content": "space-between",
+        "css_classes": "nav atelier-navigation"
+      },
+      "elements": [
+        {
+          "id": "a7c1e11",
+          "elType": "widget",
+          "widgetType": "image",
+          "isInner": false,
+          "settings": {
+            "image": {
+              "url": "__LOGO_URL__",
+              "id": "",
+              "size": "",
+              "alt": "",
+              "source": "library"
+            },
+            "image_size": "full",
+            "width": {
+              "unit": "px",
+              "size": 136,
+              "sizes": []
+            },
+            "align": "left",
+            "link_to": "custom",
+            "link": {
+              "url": "__HOME_URL__",
+              "is_external": "",
+              "nofollow": "",
+              "custom_attributes": ""
+            },
+            "_css_classes": "atelier-header-logo"
+          },
+          "elements": []
+        },
+        {
+          "id": "a7c1e12",
+          "elType": "widget",
+          "widgetType": "atelier-navigation",
+          "isInner": false,
+          "settings": {
+            "menu": "location:primary",
+            "mobile_logo": {
+              "url": "__LOGO_URL__",
+              "id": "",
+              "size": "",
+              "alt": "",
+              "source": "library"
+            },
+            "mobile_cta_text": "Partner with us",
+            "mobile_cta_link": {
+              "url": "__CONTACT_URL__",
+              "is_external": "",
+              "nofollow": "",
+              "custom_attributes": ""
+            },
+            "_css_classes": "atelier-header-menu"
+          },
+          "elements": []
+        },
+        {
+          "id": "a7c1e13",
+          "elType": "widget",
+          "widgetType": "button",
+          "isInner": false,
+          "settings": {
+            "text": "Partner with us",
+            "link": {
+              "url": "__CONTACT_URL__",
+              "is_external": "",
+              "nofollow": "",
+              "custom_attributes": ""
+            },
+            "align": "right",
+            "size": "sm",
+            "_css_classes": "atelier-header-cta"
+          },
+          "elements": []
+        }
+      ]
+    }
+  ],
+  "page_settings": []
+}

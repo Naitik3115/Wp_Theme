@@ -1,0 +1,42 @@
+{
+  "version": "0.4",
+  "title": "Atelier Categories",
+  "type": "page",
+  "content": [
+    {
+      "id": "atcat01",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_gap": {
+          "unit": "px",
+          "size": 0,
+          "column": "0",
+          "row": "0",
+          "isLinked": true
+        },
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+        }
+      },
+      "elements": [
+        {
+          "id": "atcat02",
+          "elType": "widget",
+          "widgetType": "atelier-categories",
+          "isInner": false,
+          "settings": {},
+          "elements": []
+        }
+      ]
+    }
+  ],
+  "page_settings": []
+}

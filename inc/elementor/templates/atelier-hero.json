@@ -1,0 +1,86 @@
+{
+  "version": "0.4",
+  "title": "Atelier Hero",
+  "type": "page",
+  "content": [
+    {
+      "id": "c3d4e50",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "flex_gap": {
+          "unit": "px",
+          "size": 0,
+          "column": "0",
+          "row": "0",
+          "isLinked": true
+        },
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+        },
+        "css_classes": "atelier-home-section-root atelier-home-section-root--hero"
+      },
+      "elements": [
+        {
+          "id": "c3d4e51",
+          "elType": "widget",
+          "widgetType": "atelier-hero",
+          "isInner": false,
+          "settings": {
+            "eyebrow": "Crafted for the world",
+            "title": "WE CREATE\nWHAT BRANDS\nBECOME.",
+            "sub": "Premium apparel manufacturing, thoughtfully crafted for ambitious brands across the globe.",
+            "scroll_label": "Scroll",
+            "cta1_text": "Explore our expertise",
+            "cta1_link": {
+              "url": "__EXPERTISE_URL__",
+              "is_external": "",
+              "nofollow": "",
+              "custom_attributes": ""
+            },
+            "cta2_text": "Discover collections",
+            "cta2_link": {
+              "url": "__COLLECTIONS_URL__",
+              "is_external": "",
+              "nofollow": "",
+              "custom_attributes": ""
+            },
+            "bg_type": "auto",
+            "image": {
+              "url": "__HERO_POSTER_URL__",
+              "id": "",
+              "size": "",
+              "alt": "",
+              "source": "library"
+            },
+            "video": {
+              "url": "__HERO_VIDEO_URL__",
+              "id": "",
+              "size": "",
+              "alt": "",
+              "source": "library"
+            },
+            "poster": {
+              "url": "",
+              "id": "",
+              "size": "",
+              "alt": "",
+              "source": "library"
+            },
+            "intro": "yes",
+            "parallax": "yes"
+          },
+          "elements": []
+        }
+      ]
+    }
+  ],
+  "page_settings": []
+}
