@@ -117,3 +117,16 @@ function atelier_logo( $class = 'brand__logo' ) {
 		esc_attr( get_bloginfo( 'name' ) )
 	);
 }
+
+/**
+ * True when a page/post is built with Elementor (edit mode = builder).
+ *
+ * @param int $post_id Optional post ID.
+ */
+function atelier_page_uses_elementor( $post_id = 0 ) {
+	$post_id = $post_id ? absint( $post_id ) : (int) get_the_ID();
+	if ( ! $post_id ) {
+		return false;
+	}
+	return 'builder' === get_post_meta( $post_id, '_elementor_edit_mode', true );
+}

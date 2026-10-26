@@ -39,6 +39,14 @@ function atelier_el_register_widgets( $widgets_manager ) {
 	require_once __DIR__ . '/widgets/class-atelier-featured-collection.php';
 	require_once __DIR__ . '/widgets/class-atelier-selected-work.php';
 	require_once __DIR__ . '/widgets/class-atelier-partnership-cta.php';
+	require_once __DIR__ . '/widgets/class-atelier-contact-form.php';
+	require_once __DIR__ . '/widgets/class-atelier-offices.php';
+	require_once __DIR__ . '/widgets/class-atelier-about-hero.php';
+	require_once __DIR__ . '/widgets/class-atelier-about-who.php';
+	require_once __DIR__ . '/widgets/class-atelier-about-philosophy.php';
+	require_once __DIR__ . '/widgets/class-atelier-about-commitment.php';
+	require_once __DIR__ . '/widgets/class-atelier-about-cta.php';
+	require_once __DIR__ . '/widgets/class-atelier-product-catalog.php';
 	require_once __DIR__ . '/widgets/class-atelier-footer.php';
 
 	$widgets = array(
@@ -50,6 +58,14 @@ function atelier_el_register_widgets( $widgets_manager ) {
 		new Atelier_Featured_Collection_Widget(),
 		new Atelier_Selected_Work_Widget(),
 		new Atelier_Partnership_CTA_Widget(),
+		new Atelier_Contact_Form_Widget(),
+		new Atelier_Offices_Widget(),
+		new Atelier_About_Hero_Widget(),
+		new Atelier_About_Who_Widget(),
+		new Atelier_About_Philosophy_Widget(),
+		new Atelier_About_Commitment_Widget(),
+		new Atelier_About_CTA_Widget(),
+		new Atelier_Product_Catalog_Widget(),
 		new Atelier_Footer_Widget(),
 	);
 	foreach ( $widgets as $widget ) {

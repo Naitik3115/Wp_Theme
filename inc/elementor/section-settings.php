@@ -165,10 +165,11 @@ function atelier_create_starter_section( $slot ) {
 	}
 
 	$tokens = array(
-		'__HERO_POSTER_URL__'  => atelier_asset_url( 'hero_poster' ),
-		'__HERO_VIDEO_URL__'   => atelier_asset_url( 'hero_video' ), // '' when the file does not exist.
-		'__EXPERTISE_URL__'    => atelier_url( 'our-expertise' ),
-		'__COLLECTIONS_URL__'  => atelier_url( 'collections' ),
+		'__HERO_POSTER_URL__'   => atelier_asset_url( 'hero_poster' ),
+		'__HERO_VIDEO_URL__'    => atelier_asset_url( 'hero_video' ), // '' when the file does not exist.
+		'__EXPERTISE_URL__'     => atelier_url( 'our-expertise' ),
+		'__COLLECTIONS_URL__'   => atelier_url( 'collections' ),
+		'__CONTACT_IMAGE_URL__' => atelier_asset_url( 'editorial' ),
 	);
 	$content = $data['content'];
 	array_walk_recursive(

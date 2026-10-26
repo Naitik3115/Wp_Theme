@@ -114,7 +114,15 @@ class Atelier_Categories_Widget extends Widget_Base {
 			'max'         => 3000,
 			'step'        => 50,
 			'default'     => 650,
-			'description' => esc_html__( 'Set to 0 to use native smooth scrolling.', 'atelier-b2b' ),
+			'description' => esc_html__( 'Set to 0 to use native smooth scrolling. Drag/swipe always work.', 'atelier-b2b' ),
+		) );
+		$this->add_control( 'show_arrows', array(
+			'label'        => esc_html__( 'Show navigation arrows', 'atelier-b2b' ),
+			'type'         => Controls_Manager::SWITCHER,
+			'label_on'     => esc_html__( 'Yes', 'atelier-b2b' ),
+			'label_off'    => esc_html__( 'No', 'atelier-b2b' ),
+			'return_value' => 'yes',
+			'default'      => 'yes',
 		) );
 		$this->end_controls_section();
 
@@ -137,6 +145,19 @@ class Atelier_Categories_Widget extends Widget_Base {
 			),
 			'default' => '3 / 4',
 			'selectors' => array( '{{WRAPPER}} .cat-card' => 'aspect-ratio: {{VALUE}};' ),
+		) );
+		$this->add_control( 'image_position', array(
+			'label'   => esc_html__( 'Image focus', 'atelier-b2b' ),
+			'type'    => Controls_Manager::SELECT,
+			'options' => array(
+				'center center' => esc_html__( 'Center', 'atelier-b2b' ),
+				'center top'    => esc_html__( 'Top', 'atelier-b2b' ),
+				'center bottom' => esc_html__( 'Bottom', 'atelier-b2b' ),
+				'left center'   => esc_html__( 'Left', 'atelier-b2b' ),
+				'right center'  => esc_html__( 'Right', 'atelier-b2b' ),
+			),
+			'default'   => 'center center',
+			'selectors' => array( '{{WRAPPER}} .cat-card__img' => 'object-position: {{VALUE}};' ),
 		) );
 		$this->add_responsive_control( 'slide_width', array(
 			'label'      => esc_html__( 'Card width', 'atelier-b2b' ),
@@ -273,10 +294,12 @@ class Atelier_Categories_Widget extends Widget_Base {
 				<?php endif; ?>
 				<div class="section-head__aside">
 					<?php if ( ! empty( $s['description'] ) ) : ?><p class="lede"><?php echo esc_html( $s['description'] ); ?></p><?php endif; ?>
+					<?php if ( empty( $s['show_arrows'] ) || 'yes' === $s['show_arrows'] ) : ?>
 					<div class="slider-controls" data-slider-controls>
 						<button class="slider-btn" type="button" data-slider-prev aria-label="<?php esc_attr_e( 'Previous category', 'atelier-b2b' ); ?>"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
 						<button class="slider-btn" type="button" data-slider-next aria-label="<?php esc_attr_e( 'Next category', 'atelier-b2b' ); ?>"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
 					</div>
+					<?php endif; ?>
 				</div>
 			</div>
 			<div class="slider" data-slider data-slider-speed="<?php echo esc_attr( max( 0, absint( $s['slider_speed'] ) ) ); ?>" role="region" aria-roledescription="carousel" aria-label="<?php esc_attr_e( 'Product categories', 'atelier-b2b' ); ?>">

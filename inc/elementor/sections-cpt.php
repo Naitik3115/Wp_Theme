@@ -46,6 +46,48 @@ function atelier_section_slots() {
 			'json'  => 'atelier-partnership-cta.json',
 			'title' => __( 'Atelier Partnership CTA', 'atelier-b2b' ),
 		),
+		'contact' => array(
+			'label' => __( 'Contact Page', 'atelier-b2b' ),
+			'part'  => 'template-parts/contact/contact-form',
+			'json'  => 'atelier-contact-form.json',
+			'title' => __( 'Atelier Contact Page', 'atelier-b2b' ),
+		),
+		'offices' => array(
+			'label' => __( 'Our Offices', 'atelier-b2b' ),
+			'part'  => 'template-parts/contact/offices',
+			'json'  => 'atelier-offices.json',
+			'title' => __( 'Atelier Offices', 'atelier-b2b' ),
+		),
+		'about_hero' => array(
+			'label' => __( 'About Hero', 'atelier-b2b' ),
+			'part'  => 'template-parts/about/hero',
+			'json'  => 'atelier-about-hero.json',
+			'title' => __( 'Atelier About Hero', 'atelier-b2b' ),
+		),
+		'about_who' => array(
+			'label' => __( 'About Who We Are', 'atelier-b2b' ),
+			'part'  => 'template-parts/about/who-we-are',
+			'json'  => 'atelier-about-who.json',
+			'title' => __( 'Atelier About Who We Are', 'atelier-b2b' ),
+		),
+		'about_philosophy' => array(
+			'label' => __( 'About Philosophy', 'atelier-b2b' ),
+			'part'  => 'template-parts/about/philosophy',
+			'json'  => 'atelier-about-philosophy.json',
+			'title' => __( 'Atelier About Philosophy', 'atelier-b2b' ),
+		),
+		'about_commitment' => array(
+			'label' => __( 'About Commitment', 'atelier-b2b' ),
+			'part'  => 'template-parts/about/commitment',
+			'json'  => 'atelier-about-commitment.json',
+			'title' => __( 'Atelier About Commitment', 'atelier-b2b' ),
+		),
+		'about_cta' => array(
+			'label' => __( 'About CTA', 'atelier-b2b' ),
+			'part'  => 'template-parts/about/cta',
+			'json'  => 'atelier-about-cta.json',
+			'title' => __( 'Atelier About CTA', 'atelier-b2b' ),
+		),
 		'footer' => array(
 			'label' => __( 'Global Footer', 'atelier-b2b' ),
 			'part'  => 'template-parts/footer/footer-main',
@@ -175,7 +217,7 @@ add_action( 'manage_atelier_section_posts_custom_column', function ( $col, $post
 	if ( 'atelier_type' === $col ) {
 		$slot  = get_post_meta( $post_id, '_atelier_section_slot', true );
 		$slots = atelier_section_slots();
-		echo esc_html( isset( $slots[ $slot ] ) ? $slots[ $slot ]['label'] : '—' );
+		echo esc_html( isset( $slots[ $slot ] ) ? $slots[ $slot ]['label'] : '-' );
 	} elseif ( 'atelier_active' === $col ) {
 		$slot = get_post_meta( $post_id, '_atelier_section_slot', true );
 		echo $slot && atelier_get_active_section_id_raw( $slot ) === (int) $post_id ? '<strong>' . esc_html__( 'Active', 'atelier-b2b' ) . '</strong>' : '&mdash;';

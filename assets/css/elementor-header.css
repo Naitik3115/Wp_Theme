@@ -40,15 +40,92 @@
 .atelier-site-header .atelier-nav-widget{display:none}
 .atelier-site-header .burger{color:inherit}
 
-/* CTA (Elementor Button widget) */
+/* CTA (Elementor Button widget) — same wipe + arrow motion as theme .btn */
 .atelier-site-header .atelier-header-cta{display:none}
-.atelier-site-header .atelier-header-cta .elementor-button{display:inline-flex;align-items:center;justify-content:center;gap:.8em;padding:.95em 1.5em;border:1px solid currentColor;border-radius:999px;background:transparent;color:inherit;font-family:var(--f-head);font-weight:600;font-size:.68rem;line-height:1;letter-spacing:.14em;text-transform:uppercase;box-shadow:none;transition:background-color .45s var(--ease),color .45s var(--ease),border-color .45s var(--ease)}
-.atelier-site-header .atelier-header-cta .elementor-button-text::after{content:"";display:inline-block;width:.95em;height:.95em;margin-left:.8em;vertical-align:-.1em;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.4'%3E%3Cpath d='M4 12L12 4M5.5 4H12v6.5'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.4'%3E%3Cpath d='M4 12L12 4M5.5 4H12v6.5'/%3E%3C/svg%3E") center/contain no-repeat}
-.site-header.is-scrolled .atelier-header-cta .elementor-button{background:var(--c-brown);border-color:var(--c-brown);color:var(--c-light)}
-.site-header.is-top .atelier-header-cta .elementor-button:hover,
-.site-header.is-top .atelier-header-cta .elementor-button:focus-visible{background:var(--c-light);border-color:var(--c-light);color:var(--c-dark)}
+.atelier-site-header .atelier-header-cta .elementor-button{
+  --fill:var(--c-light);
+  --hover-color:var(--c-dark);
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.8em;
+  padding:.95em 1.5em;
+  border:1px solid currentColor;
+  border-radius:999px;
+  background:transparent;
+  color:inherit;
+  font-family:var(--f-head);
+  font-weight:600;
+  font-size:.68rem;
+  line-height:1;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  overflow:hidden;
+  isolation:isolate;
+  box-shadow:none!important;
+  transition:color .5s var(--ease),border-color .5s var(--ease),background-color .5s var(--ease)
+}
+.atelier-site-header .atelier-header-cta .elementor-button::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  z-index:-1;
+  background:var(--fill);
+  border-radius:50% 50% 0 0/100% 100% 0 0;
+  transform:translateY(102%);
+  transition:transform .65s var(--ease-out),border-radius .65s var(--ease-out)
+}
+.atelier-site-header .atelier-header-cta .elementor-button:hover::before,
+.atelier-site-header .atelier-header-cta .elementor-button:focus-visible::before{
+  transform:none;
+  border-radius:0
+}
+.atelier-site-header .atelier-header-cta .elementor-button:hover,
+.atelier-site-header .atelier-header-cta .elementor-button:focus-visible{
+  color:var(--hover-color);
+  background:transparent
+}
+.atelier-site-header .atelier-header-cta .elementor-button .elementor-button-content-wrapper{
+  position:relative;
+  z-index:1;
+  display:inline-flex;
+  align-items:center
+}
+.atelier-site-header .atelier-header-cta .elementor-button-text{
+  display:inline-flex;
+  align-items:center
+}
+.atelier-site-header .atelier-header-cta .elementor-button-text::after{
+  content:"";
+  display:inline-block;
+  width:.95em;
+  height:.95em;
+  margin-left:.8em;
+  vertical-align:-.1em;
+  background:currentColor;
+  transition:transform .5s var(--ease-out);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.4'%3E%3Cpath d='M4 12L12 4M5.5 4H12v6.5'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.4'%3E%3Cpath d='M4 12L12 4M5.5 4H12v6.5'/%3E%3C/svg%3E") center/contain no-repeat
+}
+.atelier-site-header .atelier-header-cta .elementor-button:hover .elementor-button-text::after,
+.atelier-site-header .atelier-header-cta .elementor-button:focus-visible .elementor-button-text::after{
+  transform:translate(3px,-3px)
+}
+.site-header.is-scrolled .atelier-header-cta .elementor-button{
+  --fill:var(--c-dark);
+  --hover-color:var(--c-light);
+  background:var(--c-brown);
+  border-color:var(--c-brown);
+  color:var(--c-light)
+}
 .site-header.is-scrolled .atelier-header-cta .elementor-button:hover,
-.site-header.is-scrolled .atelier-header-cta .elementor-button:focus-visible{background:var(--c-dark);border-color:var(--c-dark);color:var(--c-light)}
+.site-header.is-scrolled .atelier-header-cta .elementor-button:focus-visible{
+  background:var(--c-brown);
+  border-color:var(--c-brown);
+  color:var(--hover-color)
+}
 
 /* 1180px breakpoint: full nav (3-column grid, same as the static header) */
 @media (min-width:1180px){

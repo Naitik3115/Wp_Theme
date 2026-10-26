@@ -42,14 +42,35 @@ function atelier_body_classes( $classes ) {
 	if ( atelier_has_hero() ) {
 		$classes[] = 'has-hero';
 	}
+	if ( atelier_is_contact_layout() ) {
+		$classes[] = 'is-contact';
+	}
+	if ( atelier_is_about_layout() ) {
+		$classes[] = 'is-about';
+	}
+	if ( atelier_is_collections_layout() ) {
+		$classes[] = 'is-collections';
+	}
 	return $classes;
 }
 add_filter( 'body_class', 'atelier_body_classes' );
 
 function atelier_has_hero() {
-	return (bool) apply_filters( 'atelier_has_hero', atelier_is_homepage_layout() );
+	return (bool) apply_filters( 'atelier_has_hero', atelier_is_homepage_layout() || atelier_is_about_layout() );
 }
 
 function atelier_is_homepage_layout() {
 	return is_front_page() || is_page_template( 'page-templates/template-atelier-home.php' );
+}
+
+function atelier_is_contact_layout() {
+	return is_page_template( 'page-templates/template-atelier-contact.php' );
+}
+
+function atelier_is_about_layout() {
+	return is_page_template( 'page-templates/template-atelier-about.php' );
+}
+
+function atelier_is_collections_layout() {
+	return is_page_template( 'page-templates/template-atelier-collections.php' );
 }

@@ -101,8 +101,26 @@ function atelier_enqueue_section_assets() {
 		$active['footer'] = atelier_get_active_section_id( 'footer' );
 	}
 
+	$non_home = array_merge( array( 'footer', 'contact', 'offices' ), atelier_about_slot_keys() );
+
 	if ( atelier_is_homepage_layout() ) {
-		foreach ( array_diff( array_keys( atelier_section_slots() ), array( 'footer' ) ) as $slot ) {
+		foreach ( array_diff( array_keys( atelier_section_slots() ), $non_home ) as $slot ) {
+			if ( atelier_use_elementor_section( $slot ) ) {
+				$active[ $slot ] = atelier_get_active_section_id( $slot );
+			}
+		}
+	}
+
+	if ( atelier_is_contact_layout() ) {
+		foreach ( array( 'contact', 'offices' ) as $slot ) {
+			if ( atelier_use_elementor_section( $slot ) ) {
+				$active[ $slot ] = atelier_get_active_section_id( $slot );
+			}
+		}
+	}
+
+	if ( atelier_is_about_layout() ) {
+		foreach ( atelier_about_slot_keys() as $slot ) {
 			if ( atelier_use_elementor_section( $slot ) ) {
 				$active[ $slot ] = atelier_get_active_section_id( $slot );
 			}
@@ -143,7 +161,9 @@ add_action( 'wp_enqueue_scripts', 'atelier_enqueue_section_assets', 20 );
 
 /** The hero poster preload from enqueue-assets.php would point at the old image once the hero is edited. */
 function atelier_maybe_drop_static_hero_preload() {
-	if ( atelier_is_homepage_layout() && atelier_use_elementor_section( 'hero' ) ) {
+	$drop_home  = atelier_is_homepage_layout() && atelier_use_elementor_section( 'hero' );
+	$drop_about = atelier_is_about_layout() && atelier_use_elementor_section( 'about_hero' );
+	if ( $drop_home || $drop_about ) {
 		remove_action( 'wp_head', 'atelier_preload_hero', 2 );
 	}
 }

@@ -53,13 +53,13 @@
         scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true }
       });
     });
-    var hero = document.querySelector('[data-hero-media]');
-    if (hero) {
+    gsap.utils.toArray('[data-hero-media]').forEach(function (hero) {
+      var trigger = hero.closest('section') || hero;
       gsap.to(hero, {
         yPercent: 6, ease: 'none',
-        scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
+        scrollTrigger: { trigger: trigger, start: 'top top', end: 'bottom top', scrub: true }
       });
-    }
+    });
   });
 
   window.addEventListener('load', function () { ScrollTrigger.refresh(); });

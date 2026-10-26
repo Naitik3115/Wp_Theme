@@ -34,15 +34,35 @@ function atelier_enqueue_assets() {
 	wp_enqueue_script( 'atelier-header', $uri . '/assets/js/header.js', array( 'atelier-main' ), $ver, $defer );
 
 	$needs_animations = atelier_has_hero()
+		|| atelier_is_contact_layout()
+		|| atelier_is_about_layout()
+		|| atelier_is_collections_layout()
 		|| is_singular( 'atelier_section' )
 		|| atelier_is_elementor_editor()
 		|| ( function_exists( 'atelier_use_elementor_section' ) && atelier_use_elementor_section( 'footer' ) );
 
-	if ( atelier_has_hero() || is_singular( 'atelier_section' ) || atelier_is_elementor_editor() ) {
+	if ( atelier_is_homepage_layout() || is_singular( 'atelier_section' ) || atelier_is_elementor_editor() ) {
 		wp_enqueue_script( 'atelier-sliders', $uri . '/assets/js/sliders.js', array( 'atelier-main' ), $ver, $defer );
 	}
 	if ( $needs_animations ) {
 		wp_enqueue_script( 'atelier-animations', $uri . '/assets/js/animations.js', array( 'atelier-scrolltrigger', 'atelier-main' ), $ver, $defer );
+	}
+
+	$about_css = atelier_is_about_layout() || atelier_is_elementor_editor();
+	if ( ! $about_css && is_singular( 'atelier_section' ) ) {
+		$slot = get_post_meta( get_queried_object_id(), '_atelier_section_slot', true );
+		$about_css = $slot && in_array( $slot, atelier_about_slot_keys(), true );
+	}
+	if ( $about_css ) {
+		wp_enqueue_style( 'atelier-about', $uri . '/assets/css/about.css', array( 'atelier-responsive', 'atelier-animations' ), $ver );
+	}
+
+	wp_register_style( 'atelier-collections', $uri . '/assets/css/collections.css', array( 'atelier-responsive' ), $ver );
+	wp_register_script( 'atelier-collections-filter', $uri . '/assets/js/collections-filter.js', array(), $ver, $defer );
+
+	if ( atelier_is_collections_layout() || atelier_is_elementor_editor() ) {
+		wp_enqueue_style( 'atelier-collections' );
+		wp_enqueue_script( 'atelier-collections-filter' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'atelier_enqueue_assets' );

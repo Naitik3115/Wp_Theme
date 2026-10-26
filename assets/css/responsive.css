@@ -30,6 +30,10 @@
   .footer__mid{grid-template-columns:repeat(2,1fr);gap:3rem 2rem}
   .footer__col--brand{grid-column:1/-1}
   .partner__foot{flex-direction:row;align-items:flex-end;justify-content:space-between}
+  .contact-page__grid{grid-template-columns:1fr 1.05fr;align-items:start;gap:clamp(2.5rem,5vw,5rem)}
+  .contact-page__submit{width:auto;min-width:14rem}
+  .offices__grid{grid-template-columns:minmax(14rem,0.85fr) 1.35fr;align-items:stretch;gap:clamp(2rem,4vw,4rem)}
+  .offices__map{min-height:22rem}
 }
 
 @media (min-width:1024px){
@@ -43,6 +47,8 @@
   .section-head__title{grid-column:1/9}
   .footer__mid{grid-template-columns:1.5fr 1fr 1fr 1.3fr;gap:2rem}
   .footer__col--brand{grid-column:auto}
+  .contact-page__title{font-size:clamp(5rem,8.5vw,9.5rem)}
+  .offices__map{min-height:26rem}
 }
 
 @media (min-width:1180px){

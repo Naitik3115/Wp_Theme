@@ -1,0 +1,41 @@
+ATELIER B2B — PHASE 4 UPDATE MANIFEST
+=====================================
+Theme root: wp-content/themes/atelier-b2b/
+
+In this repository these paths are already present. The ZIP mirrors them for patch installs.
+
+Action   Relative path
+------   -------------
+REPLACE  front-page.php
+REPLACE  functions.php
+REPLACE  style.css
+ADD      page-templates/template-atelier-home.php
+ADD      template-parts/homepage-content.php
+REPLACE  template-parts/home/categories.php
+REPLACE  template-parts/home/featured-collection.php
+REPLACE  inc/theme-setup.php
+REPLACE  inc/enqueue-assets.php
+REPLACE  inc/elementor/elementor-integration.php
+REPLACE  inc/elementor/sections-cpt.php
+REPLACE  inc/elementor/section-render.php
+REPLACE  inc/elementor/section-settings.php
+ADD      inc/elementor/widgets/class-atelier-categories.php
+ADD      inc/elementor/widgets/class-atelier-featured-collection.php
+ADD      inc/elementor/templates/atelier-categories.json
+ADD      inc/elementor/templates/atelier-featured-collection.json
+REPLACE  assets/js/sliders.js
+
+Docs / package (theme root):
+ADD      INSTALL-PHASE-4.md
+ADD      MANIFEST.txt
+ADD      atelier-phase-4-update.zip
+
+Inside the ZIP only (import helpers; identical to theme template JSON):
+ADD      atelier-categories.json
+ADD      atelier-featured-collection.json
+
+Notes:
+- ADD = create path if missing; overwrite if updating an earlier Phase 4 preview.
+- REPLACE = overwrite matching file in the installed theme.
+- Backup listed theme paths before applying a ZIP elsewhere.
+- Do not change Settings → Reading automatically.

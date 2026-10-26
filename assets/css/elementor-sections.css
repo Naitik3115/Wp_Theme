@@ -16,8 +16,22 @@
 .atelier-section-preview .elementor-widget:not(:last-child){margin-block-end:0}
 .atelier-home-section .elementor-widget-atelier-hero,
 .atelier-home-section .elementor-widget-atelier-trust-marquee,
+.atelier-home-section .elementor-widget-atelier-contact-form,
+.atelier-home-section .elementor-widget-atelier-offices,
+.atelier-home-section .elementor-widget-atelier-about-hero,
+.atelier-home-section .elementor-widget-atelier-about-who,
+.atelier-home-section .elementor-widget-atelier-about-philosophy,
+.atelier-home-section .elementor-widget-atelier-about-commitment,
+.atelier-home-section .elementor-widget-atelier-about-cta,
 .atelier-section-preview .elementor-widget-atelier-hero,
-.atelier-section-preview .elementor-widget-atelier-trust-marquee{width:100%;max-width:100%;--container-widget-width:100%}
+.atelier-section-preview .elementor-widget-atelier-trust-marquee,
+.atelier-section-preview .elementor-widget-atelier-contact-form,
+.atelier-section-preview .elementor-widget-atelier-offices,
+.atelier-section-preview .elementor-widget-atelier-about-hero,
+.atelier-section-preview .elementor-widget-atelier-about-who,
+.atelier-section-preview .elementor-widget-atelier-about-philosophy,
+.atelier-section-preview .elementor-widget-atelier-about-commitment,
+.atelier-section-preview .elementor-widget-atelier-about-cta{width:100%;max-width:100%;--container-widget-width:100%}
 
 /* Hero overlay: same gradient as main.css, colours exposed as variables for Elementor */
 .elementor-widget-atelier-hero .hero__overlay{background:linear-gradient(180deg,var(--atelier-ov-top,rgba(73,56,45,.5)) 0%,rgba(73,56,45,0) 30%,rgba(73,56,45,0) 42%,var(--atelier-ov-bottom,rgba(46,34,27,.78)) 100%)}
@@ -103,4 +117,10 @@
 .atelier-section-preview--hero .atelier-section-stage{background:var(--c-dark)}
 .atelier-section-note{padding:1.4rem var(--gutter);font-family:var(--f-head);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--c-brown)}
 .atelier-section-preview--hero .atelier-section-note{color:var(--c-beige)}
+.atelier-section-preview--contact .contact-page{padding-top:clamp(2.5rem,6vw,4.5rem)}
+.atelier-section-preview--offices .offices{padding-top:clamp(2rem,4vw,3rem)}
+.atelier-section-preview--about_hero .atelier-section-stage{background:var(--c-dark)}
+.atelier-section-preview--about_hero .atelier-section-note{color:var(--c-beige)}
+.atelier-section-preview--about_philosophy .atelier-section-stage{background:var(--c-bg-2)}
+.atelier-section-preview--about_cta .atelier-section-stage{background:var(--c-bg-2)}
 /* The real header is not shown in this canvas, so the hero needs no extra offset beyond its own padding */

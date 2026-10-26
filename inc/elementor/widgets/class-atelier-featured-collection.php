@@ -62,7 +62,7 @@ class Atelier_Featured_Collection_Widget extends Widget_Base {
 		$this->add_control( 'image', array(
 			'label'   => esc_html__( 'Collection image', 'atelier-b2b' ),
 			'type'    => Controls_Manager::MEDIA,
-			'default' => array( 'url' => '' ),
+			'default' => array( 'url' => atelier_asset_url( 'editorial' ) ),
 		) );
 		$this->add_control( 'cta_text', array(
 			'label'   => esc_html__( 'Button text', 'atelier-b2b' ),
