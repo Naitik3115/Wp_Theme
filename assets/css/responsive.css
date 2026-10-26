@@ -62,7 +62,6 @@
 
 @media (min-width:1440px){
   :root{--gap:1.75rem}
-  .hero__sub{max-width:34ch}
 }
 
 @media (pointer:coarse){
