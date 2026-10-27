@@ -47,6 +47,8 @@ function atelier_hero_section( $d ) {
 			'video_url'    => '',
 			'poster_url'   => '',
 			'scroll_label' => '',
+			'scroll_target' => '#trust',
+			'section_id'   => 'hero',
 			'parallax'     => true,
 			'intro'        => true,
 		)
@@ -60,7 +62,7 @@ function atelier_hero_section( $d ) {
 		<?php
 	};
 	?>
-<section class="hero<?php echo $d['intro'] ? '' : ' hero--static'; ?>" id="hero" aria-labelledby="hero-title">
+<section class="hero<?php echo $d['intro'] ? '' : ' hero--static'; ?>" id="<?php echo esc_attr( $d['section_id'] ); ?>" aria-labelledby="<?php echo esc_attr( $d['section_id'] ); ?>-title">
 	<div class="hero__media"<?php echo $d['parallax'] ? ' data-hero-media' : ''; ?>>
 		<div class="hero__media-inner">
 			<?php if ( $d['video_url'] ) : ?>
@@ -79,7 +81,7 @@ function atelier_hero_section( $d ) {
 			<p class="hero__eyebrow label"><?php echo esc_html( $d['eyebrow'] ); ?></p>
 		<?php endif; ?>
 
-		<h1 class="hero__title display" id="hero-title" aria-label="<?php echo esc_attr( atelier_plain( $d['title'] ) ); ?>">
+		<h1 class="hero__title display" id="<?php echo esc_attr( $d['section_id'] ); ?>-title" aria-label="<?php echo esc_attr( atelier_plain( $d['title'] ) ); ?>">
 			<span aria-hidden="true"><?php echo atelier_lines( $d['title'] ); // phpcs:ignore ?></span>
 		</h1>
 
@@ -95,7 +97,7 @@ function atelier_hero_section( $d ) {
 	</div>
 
 	<?php if ( $d['scroll_label'] ) : ?>
-	<a class="hero__scroll" href="#trust" aria-label="<?php esc_attr_e( 'Scroll to content', 'atelier-b2b' ); ?>">
+	<a class="hero__scroll" href="<?php echo esc_url( $d['scroll_target'] ); ?>" aria-label="<?php esc_attr_e( 'Scroll to content', 'atelier-b2b' ); ?>">
 		<span class="hero__scroll-label"><?php echo esc_html( $d['scroll_label'] ); ?></span>
 		<span class="hero__scroll-line" aria-hidden="true"></span>
 	</a>

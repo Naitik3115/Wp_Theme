@@ -69,7 +69,7 @@ function atelier_el_media( $media, $fallback_key, $args = array() ) {
 /**
  * About hero.
  *
- * @param array $d eyebrow, title, sub, scroll, image (media array) or image_key.
+ * @param array $d eyebrow, title, sub, scroll, cta_1, cta_2, image (media array), or image_key.
  */
 function atelier_about_hero_section( $d ) {
 	$d = wp_parse_args(
@@ -79,50 +79,56 @@ function atelier_about_hero_section( $d ) {
 			'title'      => '',
 			'sub'        => '',
 			'scroll'     => '',
+			'cta_1'      => array(),
+			'cta_2'      => array(),
 			'image'      => array(),
-			'image_key'  => 'hero_poster',
+			'image_key'  => '',
 			'section_id' => 'about-hero',
 		)
 	);
-	$title_id = $d['section_id'] . '-title';
-	?>
-	<section class="about-hero" id="<?php echo esc_attr( $d['section_id'] ); ?>"<?php echo $d['title'] ? ' aria-labelledby="' . esc_attr( $title_id ) . '"' : ' aria-label="' . esc_attr__( 'About', 'atelier-b2b' ) . '"'; ?>>
-		<div class="about-hero__media" data-hero-media>
-			<div class="about-hero__media-inner">
-				<?php
-				atelier_el_media(
-					$d['image'],
-					$d['image_key'],
-					array(
-						'class'         => 'about-hero__img',
-						'loading'       => 'eager',
-						'fetchpriority' => 'high',
-						'sizes'         => '100vw',
-					)
-				);
-				?>
-			</div>
-		</div>
-		<div class="about-hero__overlay" aria-hidden="true"></div>
-		<div class="container about-hero__content">
-			<?php if ( $d['eyebrow'] ) : ?><p class="label about-hero__eyebrow"><?php echo esc_html( $d['eyebrow'] ); ?></p><?php endif; ?>
-			<?php if ( $d['title'] ) : ?>
-				<h1 class="display about-hero__title" id="<?php echo esc_attr( $title_id ); ?>" data-lines aria-label="<?php echo esc_attr( atelier_plain( $d['title'] ) ); ?>">
-					<span aria-hidden="true"><?php echo atelier_lines( $d['title'] ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
-				</h1>
-			<?php endif; ?>
-			<div class="about-hero__foot">
-				<?php if ( $d['sub'] ) : ?><p class="lede about-hero__sub"><?php echo esc_html( $d['sub'] ); ?></p><?php endif; ?>
-				<?php if ( $d['scroll'] ) : ?>
-					<div class="about-hero__scroll" aria-hidden="true">
-						<span class="about-hero__scroll-label"><?php echo esc_html( $d['scroll'] ); ?></span>
-						<span class="about-hero__scroll-line"></span>
-					</div>
-				<?php endif; ?>
-			</div>
-		</div>
-	</section>
-	<?php
+	$bg_html   = '';
+	$video_url = atelier_asset_url( 'hero_video' );
+	$poster    = atelier_asset_url( 'hero_poster' );
+	$image     = is_array( $d['image'] ) ? $d['image'] : array();
+
+	if ( ! empty( $image['id'] ) || ! empty( $image['url'] ) ) {
+		ob_start();
+		atelier_el_media(
+			$image,
+			'',
+			array(
+				'class'         => 'hero__img',
+				'loading'       => 'eager',
+				'fetchpriority' => 'high',
+				'sizes'         => '100vw',
+			)
+		);
+		$bg_html   = ob_get_clean();
+		$video_url = '';
+		$poster    = ! empty( $image['url'] ) ? $image['url'] : wp_get_attachment_image_url( absint( $image['id'] ), 'full' );
+	} elseif ( $d['image_key'] ) {
+		ob_start();
+		atelier_image( $d['image_key'], array( 'class' => 'hero__img', 'loading' => 'eager', 'fetchpriority' => 'high', 'sizes' => '100vw' ) );
+		$bg_html   = ob_get_clean();
+		$video_url = '';
+		$poster    = atelier_asset_url( $d['image_key'] );
+	}
+
+	atelier_hero_section(
+		array(
+			'eyebrow'      => $d['eyebrow'],
+			'title'        => $d['title'],
+			'sub'          => $d['sub'],
+			'cta_1'        => $d['cta_1'],
+			'cta_2'        => $d['cta_2'],
+			'bg_html'      => $bg_html,
+			'video_url'    => $video_url,
+			'poster_url'   => $poster,
+			'scroll_label' => $d['scroll'] ? $d['scroll'] : __( 'Scroll', 'atelier-b2b' ),
+			'scroll_target' => '#about-who',
+			'section_id'   => $d['section_id'],
+		)
+	);
 }
 
 /**

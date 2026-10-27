@@ -86,7 +86,8 @@ function atelier_render_home_section( $slot ) {
 	}
 	$html = atelier_render_elementor_section( $slot );
 	if ( '' !== $html ) {
-		echo '<div class="atelier-home-section atelier-home-section--' . esc_attr( $slot ) . '">' . $html . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput -- Elementor output.
+		$id = 'about_who' === $slot ? ' id="about-who"' : '';
+		echo '<div class="atelier-home-section atelier-home-section--' . esc_attr( $slot ) . '"' . $id . '>' . $html . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput -- Elementor output.
 		return;
 	}
 	get_template_part( $slots[ $slot ]['part'] );

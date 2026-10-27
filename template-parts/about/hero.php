@@ -16,6 +16,7 @@ atelier_about_hero_section(
 		'title'     => $c['title'],
 		'sub'       => $c['sub'],
 		'scroll'    => $c['scroll'],
-		'image_key' => $c['image'],
+		'cta_1'     => $c['cta_1'],
+		'cta_2'     => $c['cta_2'],
 	)
 );

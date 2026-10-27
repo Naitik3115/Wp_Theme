@@ -132,7 +132,8 @@ function atelier_content( $section ) {
 					'title'   => "MORE THAN\nCLOTHING.\nA COMMITMENT\nTO CRAFT.",
 					'sub'     => 'We partner with ambitious brands to turn ideas into apparel that feels considered, enduring, and unmistakably yours.',
 					'scroll'  => 'Scroll',
-					'image'   => 'hero_poster',
+					'cta_1'   => array( 'label' => 'Start a conversation', 'url' => atelier_url( 'contact' ) ),
+					'cta_2'   => array( 'label' => 'Discover collections', 'url' => atelier_url( 'collections' ) ),
 				),
 				'who' => array(
 					'label'   => '02 / Who we are',
