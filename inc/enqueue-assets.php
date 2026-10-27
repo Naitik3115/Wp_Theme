@@ -58,11 +58,17 @@ function atelier_enqueue_assets() {
 	}
 
 	wp_register_style( 'atelier-collections', $uri . '/assets/css/collections.css', array( 'atelier-responsive' ), $ver );
+	wp_register_style( 'atelier-collections-v1', $uri . '/assets/css/collections_v1.css', array( 'atelier-responsive' ), $ver );
 	wp_register_script( 'atelier-collections-filter', $uri . '/assets/js/collections-filter.js', array(), $ver, $defer );
 
 	if ( atelier_is_collections_layout() || atelier_is_elementor_editor() ) {
-		wp_enqueue_style( 'atelier-collections' );
 		wp_enqueue_script( 'atelier-collections-filter' );
+	}
+	if ( is_page_template( 'page-templates/template-atelier-collections.php' ) || atelier_is_elementor_editor() ) {
+		wp_enqueue_style( 'atelier-collections' );
+	}
+	if ( atelier_is_collections_v1_layout() || atelier_is_elementor_editor() ) {
+		wp_enqueue_style( 'atelier-collections-v1' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'atelier_enqueue_assets' );

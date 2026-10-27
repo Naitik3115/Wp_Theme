@@ -51,6 +51,9 @@ function atelier_body_classes( $classes ) {
 	if ( atelier_is_collections_layout() ) {
 		$classes[] = 'is-collections';
 	}
+	if ( atelier_is_collections_latest_layout() ) {
+		$classes[] = 'is-collections-latest';
+	}
 	return $classes;
 }
 add_filter( 'body_class', 'atelier_body_classes' );
@@ -72,5 +75,16 @@ function atelier_is_about_layout() {
 }
 
 function atelier_is_collections_layout() {
+	return is_page_template( array(
+		'page-templates/template-atelier-collections.php',
+		'page-templates/template-atelier-collections_v1.php',
+	) );
+}
+
+function atelier_is_collections_v1_layout() {
+	return is_page_template( 'page-templates/template-atelier-collections_v1.php' );
+}
+
+function atelier_is_collections_latest_layout() {
 	return is_page_template( 'page-templates/template-atelier-collections.php' );
 }

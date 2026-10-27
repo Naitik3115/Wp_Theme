@@ -7,5 +7,5 @@
 
 defined( 'ABSPATH' ) || exit;
 
-get_template_part( 'template-parts/collections/intro' );
-get_template_part( 'template-parts/collections/catalog' );
+get_template_part( 'template-parts/collections_V1/intro' );
+get_template_part( 'template-parts/collections_V1/catalog' );

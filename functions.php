@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'ATELIER_VERSION', '1.7.1' );
+define( 'ATELIER_VERSION', '1.7.2' );
 
 require_once get_template_directory() . '/inc/theme-setup.php';
 require_once get_template_directory() . '/inc/asset-config.php';
@@ -19,6 +19,8 @@ require_once get_template_directory() . '/inc/contact-form.php';
 require_once get_template_directory() . '/inc/about-markup.php'; // About page sections (static + Elementor).
 require_once get_template_directory() . '/inc/collections-markup.php'; // Product catalog (static + Elementor).
 require_once get_template_directory() . '/inc/enqueue-assets.php';
+
+require_once get_template_directory() . '/inc/collections/collections-loader.php'; // Phase 5: products, collections page, Quick View.
 
 // Phase 2 + 3: optional Elementor Free integration (falls back to static PHP automatically).
 require_once get_template_directory() . '/inc/elementor/elementor-integration.php';

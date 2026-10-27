@@ -1,0 +1,121 @@
+{
+  "version": "0.4",
+  "title": "Atelier Collections Page",
+  "type": "page",
+  "content": [
+    {
+      "id": "e5f6a01",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+        },
+        "css_classes": "atelier-col-root atelier-col-root--hero"
+      },
+      "elements": [
+        {
+          "id": "e5f6a02",
+          "elType": "widget",
+          "widgetType": "atelier-collections-hero",
+          "isInner": false,
+          "settings": {
+            "eyebrow": "The Atelier Edit",
+            "title": "EXPLORE OUR\nCOLLECTIONS.",
+            "text": "A considered selection of apparel, crafted for brands that value design, quality, and individuality.",
+            "scroll": "Scroll"
+          },
+          "elements": []
+        }
+      ]
+    },
+    {
+      "id": "e5f6a10",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+        },
+        "css_classes": "atelier-col-root atelier-col-root--grid"
+      },
+      "elements": [
+        {
+          "id": "e5f6a11",
+          "elType": "widget",
+          "widgetType": "atelier-collection-grid",
+          "isInner": false,
+          "settings": {
+            "orderby": "menu",
+            "per_page": 9,
+            "load_more": "yes",
+            "more_label": "Load more",
+            "filters": "yes",
+            "all_label": "All Collections",
+            "sticky": "yes",
+            "count": "yes",
+            "quick": "yes",
+            "ref": "yes",
+            "season": "yes",
+            "featured": "wide"
+          },
+          "elements": []
+        }
+      ]
+    },
+    {
+      "id": "e5f6a20",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+        },
+        "css_classes": "atelier-col-root atelier-col-root--cta"
+      },
+      "elements": [
+        {
+          "id": "e5f6a21",
+          "elType": "widget",
+          "widgetType": "atelier-collections-cta",
+          "isInner": false,
+          "settings": {
+            "label": "Let’s build something together",
+            "title": "SHARE YOUR\nCONCEPT.",
+            "text": "Tell us what you’re building, and we’ll take it from there.",
+            "cta_text": "Start an inquiry",
+            "cta_link": {
+              "url": "/contact/",
+              "is_external": "",
+              "nofollow": "",
+              "custom_attributes": ""
+            }
+          },
+          "elements": []
+        }
+      ]
+    }
+  ],
+  "page_settings": []
+}
