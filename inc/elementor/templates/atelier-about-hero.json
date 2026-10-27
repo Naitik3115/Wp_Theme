@@ -19,7 +19,31 @@
           "elType": "widget",
           "widgetType": "atelier-about-hero",
           "isInner": false,
-          "settings": {},
+          "settings": {
+            "eyebrow": "OUR STORY / A MORE THOUGHTFUL PARTNER",
+            "heading": "CRAFTED WITH\nPURPOSE.\nBUILT ON\nPARTNERSHIP.",
+            "description": "From first idea through final delivery, we work alongside ambitious brands to create considered apparel with care, clarity, and lasting quality.",
+            "scroll_label": "Scroll",
+            "cta1_text": "Our story",
+            "cta1_link": {
+              "url": "#about-who"
+            },
+            "cta2_text": "Our approach",
+            "cta2_link": {
+              "url": "#about-philosophy"
+            },
+            "media_type": "auto",
+            "image": {
+              "url": ""
+            },
+            "video": {
+              "url": ""
+            },
+            "poster": {
+              "url": ""
+            },
+            "image_position": "center center"
+          },
           "elements": []
         }
       ]

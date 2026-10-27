@@ -128,12 +128,12 @@ function atelier_content( $section ) {
 
 			'about' => array(
 				'hero' => array(
-					'eyebrow' => '01 / The story behind the craft',
-					'title'   => "MORE THAN\nCLOTHING.\nA COMMITMENT\nTO CRAFT.",
-					'sub'     => 'We partner with ambitious brands to turn ideas into apparel that feels considered, enduring, and unmistakably yours.',
+					'eyebrow' => 'OUR STORY / A MORE THOUGHTFUL PARTNER',
+					'title'   => "CRAFTED WITH\nPURPOSE.\nBUILT ON\nPARTNERSHIP.",
+					'sub'     => 'From first idea through final delivery, we work alongside ambitious brands to create considered apparel with care, clarity, and lasting quality.',
 					'scroll'  => 'Scroll',
-					'cta_1'   => array( 'label' => 'Start a conversation', 'url' => atelier_url( 'contact' ) ),
-					'cta_2'   => array( 'label' => 'Discover collections', 'url' => atelier_url( 'collections' ) ),
+					'cta_1'   => array( 'label' => 'Our story', 'url' => '#about-who' ),
+					'cta_2'   => array( 'label' => 'Our approach', 'url' => '#about-philosophy' ),
 				),
 				'who' => array(
 					'label'   => '02 / Who we are',

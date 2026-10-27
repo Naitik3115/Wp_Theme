@@ -46,14 +46,59 @@ class Atelier_About_Hero_Widget extends Widget_Base {
 		$this->add_control( 'cta1_link', array( 'label' => esc_html__( 'Primary URL', 'atelier-b2b' ), 'type' => Controls_Manager::URL, 'default' => array( 'url' => $d['cta_1']['url'] ) ) );
 		$this->add_control( 'cta2_text', array( 'label' => esc_html__( 'Secondary button', 'atelier-b2b' ), 'type' => Controls_Manager::TEXT, 'default' => $d['cta_2']['label'] ) );
 		$this->add_control( 'cta2_link', array( 'label' => esc_html__( 'Secondary URL', 'atelier-b2b' ), 'type' => Controls_Manager::URL, 'default' => array( 'url' => $d['cta_2']['url'] ) ) );
-		$this->add_control( 'image', array( 'label' => esc_html__( 'Background image (optional; replaces the homepage video)', 'atelier-b2b' ), 'type' => Controls_Manager::MEDIA, 'default' => array() ) );
+
+		$this->end_controls_section();
+
+		$this->start_controls_section( 'section_background', array( 'label' => esc_html__( 'Background media', 'atelier-b2b' ), 'tab' => Controls_Manager::TAB_CONTENT ) );
+		$this->add_control( 'media_type', array(
+			'label'   => esc_html__( 'Background type', 'atelier-b2b' ),
+			'type'    => Controls_Manager::SELECT,
+			'options' => array(
+				'auto'  => esc_html__( 'Auto (video if selected, otherwise image)', 'atelier-b2b' ),
+				'image' => esc_html__( 'Image', 'atelier-b2b' ),
+				'video' => esc_html__( 'Video', 'atelier-b2b' ),
+			),
+			'default' => 'auto',
+		) );
+		$this->add_control( 'image', array(
+			'label'       => esc_html__( 'Background image / video poster', 'atelier-b2b' ),
+			'type'        => Controls_Manager::MEDIA,
+			'default'     => array(),
+			'description' => esc_html__( 'Used as the background in Image mode or as the video fallback/poster.', 'atelier-b2b' ),
+		) );
+		$this->add_control( 'video', array(
+			'label'       => esc_html__( 'Background video (MP4)', 'atelier-b2b' ),
+			'type'        => Controls_Manager::MEDIA,
+			'media_types' => array( 'video' ),
+			'default'     => array(),
+			'description' => esc_html__( 'In Auto mode, a selected video takes priority over the image.', 'atelier-b2b' ),
+		) );
+		$this->add_control( 'poster', array(
+			'label'       => esc_html__( 'Video poster (optional)', 'atelier-b2b' ),
+			'type'        => Controls_Manager::MEDIA,
+			'default'     => array(),
+			'description' => esc_html__( 'Leave empty to use the background image or the theme poster.', 'atelier-b2b' ),
+		) );
 		$this->end_controls_section();
 
 		$this->start_controls_section( 'section_style', array( 'label' => esc_html__( 'Style', 'atelier-b2b' ), 'tab' => Controls_Manager::TAB_STYLE ) );
 		$this->add_responsive_control( 'section_padding', array( 'label' => esc_html__( 'Content padding', 'atelier-b2b' ), 'type' => Controls_Manager::DIMENSIONS, 'size_units' => array( 'px', 'rem', '%' ), 'selectors' => array( '{{WRAPPER}} .hero__content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};' ) ) );
 		$this->add_control( 'heading_color', array( 'label' => esc_html__( 'Heading color', 'atelier-b2b' ), 'type' => Controls_Manager::COLOR, 'selectors' => array( '{{WRAPPER}} .hero__title' => 'color: {{VALUE}};' ) ) );
 		$this->add_group_control( Group_Control_Typography::get_type(), array( 'name' => 'heading_typography', 'selector' => '{{WRAPPER}} .hero__title' ) );
-		$this->add_control( 'overlay_note', array( 'type' => Controls_Manager::RAW_HTML, 'raw' => esc_html__( 'The homepage video, poster and overlay are used by default. Choose a background image above to replace the video.', 'atelier-b2b' ) ) );
+		$this->add_responsive_control( 'image_position', array(
+			'label'     => esc_html__( 'Media focal point', 'atelier-b2b' ),
+			'type'      => Controls_Manager::SELECT,
+			'options'   => array(
+				'center center' => esc_html__( 'Center', 'atelier-b2b' ),
+				'center top'    => esc_html__( 'Top center', 'atelier-b2b' ),
+				'center bottom' => esc_html__( 'Bottom center', 'atelier-b2b' ),
+				'left center'   => esc_html__( 'Left center', 'atelier-b2b' ),
+				'right center'  => esc_html__( 'Right center', 'atelier-b2b' ),
+			),
+			'default'   => 'center center',
+			'selectors' => array( '{{WRAPPER}} .hero__img, {{WRAPPER}} .hero__video' => 'object-position: {{VALUE}};' ),
+		) );
+		$this->add_control( 'overlay_note', array( 'type' => Controls_Manager::RAW_HTML, 'raw' => esc_html__( 'Choose a different media focal point for desktop, tablet and mobile to keep the subject aligned.', 'atelier-b2b' ) ) );
 		$this->end_controls_section();
 	}
 
@@ -77,7 +122,10 @@ class Atelier_About_Hero_Widget extends Widget_Base {
 					'url'   => ! empty( $link2['url'] ) ? $link2['url'] : '',
 					'attrs' => atelier_link_attrs( $link2 ),
 				),
+				'media_type' => isset( $s['media_type'] ) ? $s['media_type'] : 'auto',
 				'image'      => isset( $s['image'] ) ? $s['image'] : array(),
+				'video'      => isset( $s['video'] ) ? $s['video'] : array(),
+				'poster'     => isset( $s['poster'] ) ? $s['poster'] : array(),
 				'section_id' => 'about-hero-' . sanitize_html_class( $this->get_id() ),
 			)
 		);
