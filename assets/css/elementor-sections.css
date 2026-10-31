@@ -32,6 +32,8 @@
 .atelier-section-preview .elementor-widget-atelier-about-philosophy,
 .atelier-section-preview .elementor-widget-atelier-about-commitment,
 .atelier-section-preview .elementor-widget-atelier-about-cta{width:100%;max-width:100%;--container-widget-width:100%}
+.elementor-widget-atelier-hero > .elementor-widget-container,
+.elementor-widget-atelier-about-hero > .elementor-widget-container{width:100%;max-width:100%}
 
 /* Hero overlay: same gradient as main.css, colours exposed as variables for Elementor */
 .elementor-widget-atelier-hero .hero__overlay{background:linear-gradient(180deg,var(--atelier-ov-top,rgba(73,56,45,.5)) 0%,rgba(73,56,45,0) 30%,rgba(73,56,45,0) 42%,var(--atelier-ov-bottom,rgba(46,34,27,.78)) 100%)}

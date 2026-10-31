@@ -11,10 +11,7 @@ defined( 'ABSPATH' ) || exit;
 $c      = atelier_content( 'hero' );
 $video  = atelier_asset_url( 'hero_video' );
 $poster = atelier_asset_url( 'hero_poster' );
-
-ob_start();
-atelier_image( 'hero_poster', array( 'class' => 'hero__img', 'loading' => 'eager', 'fetchpriority' => 'high', 'sizes' => '100vw' ) );
-$bg = ob_get_clean();
+$mobile = atelier_asset_exists( 'hero_poster_mobile' ) ? 'hero_poster_mobile' : 'category_women';
 
 atelier_hero_section(
 	array(
@@ -23,7 +20,7 @@ atelier_hero_section(
 		'sub'          => $c['sub'],
 		'cta_1'        => $c['cta_1'],
 		'cta_2'        => $c['cta_2'],
-		'bg_html'      => $bg,
+		'bg_html'      => atelier_hero_responsive_bg_html( 'hero_poster', $mobile ),
 		'video_url'    => $video,
 		'poster_url'   => $poster,
 		'scroll_label' => $c['scroll'],

@@ -11,7 +11,12 @@
 @media (min-width:768px){
   :root{--bar-h:36px;--nav-h:78px;--gap:1.5rem}
   .brand__logo{height:30px}
-  .hero__foot{flex-direction:row;align-items:flex-end;justify-content:space-between;gap:3rem}
+  .hero__img--portrait{display:none}
+  .hero__img--landscape{display:block;object-position:center center}
+  .hero__overlay{background:linear-gradient(180deg,rgba(73,56,45,.5) 0%,rgba(73,56,45,0) 30%,rgba(73,56,45,0) 42%,rgba(46,34,27,.78) 100%)}
+  .hero__title{font-size:clamp(2.4rem,8vw,9.5rem);max-width:none}
+  .hero__sub{font-size:clamp(1.3rem,2vw,1.75rem)}
+  .hero__foot{flex-direction:row;align-items:flex-end;justify-content:space-between;gap:3rem;margin-top:clamp(1.6rem,4vh,3.2rem);padding-top:1.6rem}
   .hero__scroll{position:absolute;right:var(--gutter);bottom:clamp(2rem,6vh,4.5rem);display:flex;flex-direction:column;align-items:center;gap:.9rem;color:var(--c-light);z-index:2}
   .hero__scroll-label{writing-mode:vertical-rl;font-family:var(--f-head);font-weight:600;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase}
   .hero__scroll-line{width:1px;height:3.5rem;background:var(--c-light)}

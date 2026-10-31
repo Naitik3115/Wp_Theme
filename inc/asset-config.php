@@ -20,8 +20,9 @@ function atelier_assets() {
 		$assets = array(
 			'logo'               => array( 'file' => 'images/logo.svg', 'w' => 200, 'h' => 44, 'alt' => '' ),
 
-			// Hero: if assets/video/hero-video.mp4 exists it is used, otherwise the poster image.
+			// Hero: landscape for tablet/desktop; optional portrait for mobile (hero-poster-mobile.jpg).
 			'hero_poster'        => array( 'file' => 'images/hero-poster.jpg', 'w' => 1920, 'h' => 1080, 'alt' => 'Premium apparel campaign imagery' ),
+			'hero_poster_mobile' => array( 'file' => 'images/hero-poster-mobile.jpg', 'w' => 1080, 'h' => 1620, 'alt' => 'Premium apparel campaign imagery' ),
 			'hero_video'         => array( 'file' => 'video/hero-video.mp4' ),
 
 			'category_men'       => array( 'file' => 'images/category-men.jpg', 'w' => 1200, 'h' => 1600, 'alt' => 'Menswear collection' ),

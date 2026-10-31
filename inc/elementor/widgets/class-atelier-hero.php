@@ -108,10 +108,17 @@ class Atelier_Hero_Widget extends Widget_Base {
 		) );
 
 		$this->add_control( 'image', array(
-			'label'       => esc_html__( 'Background image / video poster', 'atelier-b2b' ),
+			'label'       => esc_html__( 'Desktop / tablet landscape image', 'atelier-b2b' ),
 			'type'        => Controls_Manager::MEDIA,
 			'default'     => array( 'url' => '' ),
-			'description' => esc_html__( 'Also used as the fallback if the video cannot play. Recommended 1920×1080 or larger.', 'atelier-b2b' ),
+			'description' => esc_html__( 'Used from tablet landscape up (~768px+). Also the video poster fallback. Recommended 1920×1080.', 'atelier-b2b' ),
+		) );
+
+		$this->add_control( 'image_mobile', array(
+			'label'       => esc_html__( 'Mobile portrait image', 'atelier-b2b' ),
+			'type'        => Controls_Manager::MEDIA,
+			'default'     => array( 'url' => '' ),
+			'description' => esc_html__( 'Shown on phones first. Upload a tall portrait (e.g. 1080×1620) so the hero fills the screen cleanly.', 'atelier-b2b' ),
 		) );
 
 		$this->add_control( 'video', array(
@@ -119,14 +126,14 @@ class Atelier_Hero_Widget extends Widget_Base {
 			'type'        => Controls_Manager::MEDIA,
 			'media_types' => array( 'video' ),
 			'default'     => array( 'url' => '' ),
-			'description' => esc_html__( 'Muted, looping, autoplay. Keep it under ~6 MB.', 'atelier-b2b' ),
+			'description' => esc_html__( 'Muted, looping, autoplay. Keep it under ~6 MB. Video uses the landscape image as poster.', 'atelier-b2b' ),
 		) );
 
 		$this->add_control( 'poster', array(
 			'label'       => esc_html__( 'Video poster (optional)', 'atelier-b2b' ),
 			'type'        => Controls_Manager::MEDIA,
 			'default'     => array( 'url' => '' ),
-			'description' => esc_html__( 'Leave empty to reuse the image above.', 'atelier-b2b' ),
+			'description' => esc_html__( 'Leave empty to reuse the landscape image.', 'atelier-b2b' ),
 		) );
 
 		$this->end_controls_section();
@@ -189,6 +196,21 @@ class Atelier_Hero_Widget extends Widget_Base {
 			'selectors'  => array( '{{WRAPPER}} .hero__content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};' ),
 		) );
 
+		$this->add_responsive_control( 'media_position', array(
+			'label'     => esc_html__( 'Image / video focal point', 'atelier-b2b' ),
+			'type'      => Controls_Manager::SELECT,
+			'options'   => array(
+				''              => esc_html__( 'Default', 'atelier-b2b' ),
+				'center center' => esc_html__( 'Center', 'atelier-b2b' ),
+				'center top'    => esc_html__( 'Top center', 'atelier-b2b' ),
+				'center 28%'    => esc_html__( 'Upper third (good for mobile)', 'atelier-b2b' ),
+				'center bottom' => esc_html__( 'Bottom center', 'atelier-b2b' ),
+				'left center'   => esc_html__( 'Left center', 'atelier-b2b' ),
+				'right center'  => esc_html__( 'Right center', 'atelier-b2b' ),
+			),
+			'selectors' => array( '{{WRAPPER}} .hero__img, {{WRAPPER}} .hero__video' => 'object-position: {{VALUE}};' ),
+		) );
+
 		$this->end_controls_section();
 
 		/* ================= TYPOGRAPHY / COLORS ================= */
@@ -225,38 +247,16 @@ class Atelier_Hero_Widget extends Widget_Base {
 		$this->end_controls_section();
 	}
 
-	/** <img> for a MEDIA control value. */
-	private function image_html( $media, $class, $fallback_key = '' ) {
-		$args = array( 'class' => $class, 'loading' => 'eager', 'fetchpriority' => 'high', 'sizes' => '100vw', 'decoding' => 'async' );
-		if ( ! empty( $media['id'] ) ) {
-			$html = wp_get_attachment_image( (int) $media['id'], 'full', false, $args );
-			if ( $html ) {
-				return $html;
-			}
-		}
-		if ( empty( $media['url'] ) ) {
-			return '';
-		}
-		$assets = atelier_assets();
-		$w      = $fallback_key && atelier_asset_url( $fallback_key ) === $media['url'] ? (int) $assets[ $fallback_key ]['w'] : 0;
-		$h      = $w ? (int) $assets[ $fallback_key ]['h'] : 0;
-		return sprintf(
-			'<img src="%1$s" alt="" class="%2$s" loading="eager" fetchpriority="high" decoding="async" sizes="100vw"%3$s>',
-			esc_url( $media['url'] ),
-			esc_attr( $class ),
-			$w ? ' width="' . $w . '" height="' . $h . '"' : ''
-		);
-	}
-
 	protected function render() {
 		$s = $this->get_settings_for_display();
 
-		$type       = $s['bg_type'];
-		$video_url  = ( 'image' !== $type && ! empty( $s['video']['url'] ) ) ? $s['video']['url'] : '';
-		$image_html = $this->image_html( $s['image'], 'hero__img', 'hero_poster' );
-		$poster_url = ! empty( $s['poster']['url'] ) ? $s['poster']['url'] : ( ! empty( $s['image']['url'] ) ? $s['image']['url'] : '' );
+		$type      = $s['bg_type'];
+		$video_url = ( 'image' !== $type && ! empty( $s['video']['url'] ) ) ? $s['video']['url'] : '';
+		$landscape = ! empty( $s['image']['url'] ) || ! empty( $s['image']['id'] ) ? $s['image'] : 'hero_poster';
+		$portrait  = ! empty( $s['image_mobile']['url'] ) || ! empty( $s['image_mobile']['id'] ) ? $s['image_mobile'] : ( atelier_asset_exists( 'hero_poster_mobile' ) ? 'hero_poster_mobile' : 'category_women' );
+		$bg_html   = atelier_hero_responsive_bg_html( $landscape, $portrait );
+		$poster_url = ! empty( $s['poster']['url'] ) ? $s['poster']['url'] : ( ! empty( $s['image']['url'] ) ? $s['image']['url'] : atelier_asset_url( 'hero_poster' ) );
 
-		// "Video" type without a video falls back to the image automatically.
 		atelier_hero_section(
 			array(
 				'eyebrow'      => $s['eyebrow'],
@@ -264,7 +264,7 @@ class Atelier_Hero_Widget extends Widget_Base {
 				'sub'          => $s['sub'],
 				'cta_1'        => array( 'label' => $s['cta1_text'], 'url' => ! empty( $s['cta1_link']['url'] ) ? $s['cta1_link']['url'] : '', 'attrs' => atelier_link_attrs( $s['cta1_link'] ) ),
 				'cta_2'        => array( 'label' => $s['cta2_text'], 'url' => ! empty( $s['cta2_link']['url'] ) ? $s['cta2_link']['url'] : '', 'attrs' => atelier_link_attrs( $s['cta2_link'] ) ),
-				'bg_html'      => $image_html,
+				'bg_html'      => $bg_html,
 				'video_url'    => $video_url,
 				'poster_url'   => $poster_url,
 				'scroll_label' => $s['scroll_label'],

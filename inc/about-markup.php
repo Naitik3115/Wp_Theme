@@ -69,81 +69,75 @@ function atelier_el_media( $media, $fallback_key, $args = array() ) {
 /**
  * About hero.
  *
- * @param array $d eyebrow, title, sub, scroll, cta_1/cta_2, media_type, image, video, poster, image_key.
+ * @param array $d eyebrow, title, sub, scroll, cta_1/cta_2, media_type, image, image_mobile, video, poster, image_key, image_mobile_key.
  */
 function atelier_about_hero_section( $d ) {
 	$d = wp_parse_args(
 		$d,
 		array(
-			'eyebrow'    => '',
-			'title'      => '',
-			'sub'        => '',
-			'scroll'     => '',
-			'cta_1'      => array(),
-			'cta_2'      => array(),
-			'media_type' => 'auto',
-			'image'      => array(),
-			'video'      => array(),
-			'poster'     => array(),
-			'image_key'  => '',
-			'section_id' => 'about-hero',
+			'eyebrow'          => '',
+			'title'            => '',
+			'sub'              => '',
+			'scroll'           => '',
+			'cta_1'            => array(),
+			'cta_2'            => array(),
+			'media_type'       => 'auto',
+			'image'            => array(),
+			'image_mobile'     => array(),
+			'video'            => array(),
+			'poster'           => array(),
+			'image_key'        => '',
+			'image_mobile_key' => '',
+			'section_id'       => 'about-hero',
 		)
 	);
-	$bg_html   = '';
-	$image     = is_array( $d['image'] ) ? $d['image'] : array();
-	$video     = is_array( $d['video'] ) ? $d['video'] : array();
-	$poster    = is_array( $d['poster'] ) ? $d['poster'] : array();
-	$has_image = ! empty( $image['id'] ) || ! empty( $image['url'] );
-	$has_video = ! empty( $video['url'] );
-	$media_type = in_array( $d['media_type'], array( 'auto', 'image', 'video' ), true ) ? $d['media_type'] : 'auto';
-	$video_url = '';
-	$poster_url = ! empty( $poster['url'] ) ? $poster['url'] : '';
-	$use_video = 'video' === $media_type
-		|| ( 'auto' === $media_type && ( $has_video || ( ! $has_image && empty( $d['image_key'] ) ) ) );
+	$bg_html      = '';
+	$image        = is_array( $d['image'] ) ? $d['image'] : array();
+	$image_mobile = is_array( $d['image_mobile'] ) ? $d['image_mobile'] : array();
+	$video        = is_array( $d['video'] ) ? $d['video'] : array();
+	$poster       = is_array( $d['poster'] ) ? $d['poster'] : array();
+	$has_image    = ! empty( $image['id'] ) || ! empty( $image['url'] );
+	$has_mobile   = ! empty( $image_mobile['id'] ) || ! empty( $image_mobile['url'] );
+	$has_video    = ! empty( $video['url'] );
+	$media_type   = in_array( $d['media_type'], array( 'auto', 'image', 'video' ), true ) ? $d['media_type'] : 'auto';
+	$video_url    = '';
+	$poster_url   = ! empty( $poster['url'] ) ? $poster['url'] : '';
+	$use_video    = 'video' === $media_type
+		|| ( 'auto' === $media_type && $has_video );
 
 	if ( $use_video ) {
 		$video_url  = ! empty( $video['url'] ) ? $video['url'] : atelier_asset_url( 'hero_video' );
 		$image_url  = ! empty( $image['url'] ) ? $image['url'] : ( ! empty( $image['id'] ) ? wp_get_attachment_image_url( absint( $image['id'] ), 'full' ) : '' );
 		$poster_url = $poster_url ? $poster_url : ( $image_url ? $image_url : atelier_asset_url( 'hero_poster' ) );
-	} elseif ( $has_image ) {
-		ob_start();
-		atelier_el_media(
-			$image,
-			'',
-			array(
-				'class'         => 'hero__img',
-				'loading'       => 'eager',
-				'fetchpriority' => 'high',
-				'sizes'         => '100vw',
+		if ( ! $video_url ) {
+			$use_video = false;
+		}
+	}
+
+	if ( ! $use_video ) {
+		$landscape = $has_image ? $image : ( $d['image_key'] ? $d['image_key'] : 'hero_poster' );
+		$portrait  = $has_mobile ? $image_mobile : ( $d['image_mobile_key'] ? $d['image_mobile_key'] : array() );
+		$bg_html   = atelier_hero_responsive_bg_html( $landscape, $portrait );
+		$poster_url = $poster_url ? $poster_url : (
+			! empty( $image['url'] ) ? $image['url'] : (
+				! empty( $image['id'] ) ? wp_get_attachment_image_url( absint( $image['id'] ), 'full' ) : atelier_asset_url( is_string( $landscape ) ? $landscape : 'hero_poster' )
 			)
 		);
-		$bg_html = ob_get_clean();
-		$poster_url = ! empty( $image['url'] ) ? $image['url'] : wp_get_attachment_image_url( absint( $image['id'] ), 'full' );
-	} elseif ( $d['image_key'] ) {
-		ob_start();
-		atelier_image( $d['image_key'], array( 'class' => 'hero__img', 'loading' => 'eager', 'fetchpriority' => 'high', 'sizes' => '100vw' ) );
-		$bg_html   = ob_get_clean();
-		$poster_url = atelier_asset_url( $d['image_key'] );
-	} else {
-		ob_start();
-		atelier_image( 'hero_poster', array( 'class' => 'hero__img', 'loading' => 'eager', 'fetchpriority' => 'high', 'sizes' => '100vw' ) );
-		$bg_html = ob_get_clean();
-		$poster_url = atelier_asset_url( 'hero_poster' );
 	}
 
 	atelier_hero_section(
 		array(
-			'eyebrow'      => $d['eyebrow'],
-			'title'        => $d['title'],
-			'sub'          => $d['sub'],
-			'cta_1'        => $d['cta_1'],
-			'cta_2'        => $d['cta_2'],
-			'bg_html'      => $bg_html,
-			'video_url'    => $video_url,
-			'poster_url'   => $poster_url,
-			'scroll_label' => $d['scroll'] ? $d['scroll'] : __( 'Scroll', 'atelier-b2b' ),
+			'eyebrow'       => $d['eyebrow'],
+			'title'         => $d['title'],
+			'sub'           => $d['sub'],
+			'cta_1'         => $d['cta_1'],
+			'cta_2'         => $d['cta_2'],
+			'bg_html'       => $bg_html,
+			'video_url'     => $video_url,
+			'poster_url'    => $poster_url,
+			'scroll_label'  => $d['scroll'] ? $d['scroll'] : __( 'Scroll', 'atelier-b2b' ),
 			'scroll_target' => '#about-who',
-			'section_id'   => $d['section_id'],
+			'section_id'    => $d['section_id'],
 		)
 	);
 }
